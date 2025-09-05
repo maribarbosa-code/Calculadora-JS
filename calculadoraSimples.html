@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora JS</title>
-    <script src="script.js"></script>
     <script src="ROT_MOD1-NC3.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
    <link rel="icon" href="imgs/favicon.png">
@@ -13,7 +12,7 @@
 <body class="container">
     
     <form class="form-m-2">
-        <h1>Calculadora Simples em JavaScript</h1>
+        <h1>Calculadora Simples<br> em JavaScript</h1>
 
         <label class="for-label">Valor A<br></label>
         <input class="form-control" type="number" id="v1"/>
@@ -34,7 +33,49 @@
         <div class="alert-success" id="resp">O resultado aparece aqui...</div>
     </form>
 
-    
+        <script>
+            function somar(a,b){
+                return a+b;
+            }
+
+            function subtrair(a,b){
+                return a-b;
+            }
+
+            function multiplicar (a,b){
+                return a * b;
+            }
+
+            function dividir(a,b){
+                if(b==a)
+                    alert("Divisão por zero")
+                    return a/b;
+            }
+
+            function exponencial (a,b){
+                return Math.pow(a,b);
+            }
+
+            const executar = () =>{
+
+                const a = eval(document.getElementById("v1").value);
+                const b = eval(document.getElementById("v2").value);
+                let oper = eval(document.getElementById("oper").selectedIndex);
+
+                let resultado = 
+                    (oper==0)?somar(a,b):
+                    (oper==1)?subtrair(a,b):
+                    (oper==2)?multiplicar(a,b):
+                    (oper==3)?dividir(a,b):
+                    exponencial(a,b);
+
+                    if(typeof resultado === "number"){
+                        resultado = resultado.toFixed(2);
+                    }
+
+                document.getElementById("resp").innerHTML =`O resultado da operação é <span class="resultado-num">${resultado}</span>`;
+            }
+    </script>
 </body>
 </html>
 
@@ -47,10 +88,11 @@
         align-items: center;
         justify-content: center;
         display: flex;
+        height: 100vh;
     }
 
     form {
-        background-color: rgb(238, 233, 233);
+        background-color:rgba(0, 0, 0, 0.85);
         padding: 20px;
         margin: 50px;
         border-radius: 8px;
@@ -64,6 +106,7 @@
 
     .for-label {
         margin-top: 10px;
+        color: #fff;
     }
 
     .form-m-2 input {
@@ -81,7 +124,7 @@
     }
 
     form a {
-        color: #007bff;
+        color: #fff;
         text-decoration: none;
         font-size: 15px;
         margin-top: 20px;
@@ -91,20 +134,32 @@
         height: 35px; 
         line-height: 30px; 
         text-align: center;
-        border: 2px solid #007bff;
-        border-radius: 2px; 
+        border: 1px solid #fff;
+        border-radius: 8px; 
         cursor: pointer;
         font-weight: bold;
         transition: all 0.2s ease;
     }
 
+    a:hover{
+        background-color: #fff;
+        color: black;
+    }
+
     h1{
         font-size: 25px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .alert-success{
+        color: #fff;
     }
 
     .resultado-num{
         font-weight: bold;
+        color: #fff;
     }
 
 </style>
